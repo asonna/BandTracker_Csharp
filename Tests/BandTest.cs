@@ -81,7 +81,6 @@ namespace BandTracker
       Assert.Equal(testBand, result);
     }
 
-
     [Fact]
     public void GetVenues_ReturnsAllBandVenue_studentList()
     {
@@ -103,6 +102,65 @@ namespace BandTracker
       //Assert
       Assert.Equal(testList, savedVenue);
     }
+
+    [Fact]
+    public void AddVenue_AddsVenueToBand_studentList()
+    {
+      //Arrange
+      Band testBand = new Band("Jazzo Band", "Jazz");
+      testBand.Save();
+
+      Venue testVenue = new Venue("westin Ball Room", "Portland, OR");
+      testVenue.Save();
+
+      Venue testVenue2 = new Venue("Hilton Lounge", "Beaverton, OR");
+      testVenue2.Save();
+
+      //Act
+      testBand.AddVenue(testVenue);
+      testBand.AddVenue(testVenue2);
+
+      List<Venue> result = testBand.GetVenues();
+      List<Venue> testList = new List<Venue>{testVenue, testVenue2};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
+
+    // [Fact]
+    // public void Update_UpdateBandNameAndNumber_NameAndNumberUpdatedInDatabase()
+    // {
+    //   Band testBand = new Band("Rooky Band", "Rock");
+    //   testBand.Save();
+    //
+    //   testBand.Update("Jazzo Band", "Jazz");
+    //   Band result = Band.GetAll()[0];
+    //
+    //   Assert.Equal(result, testBand);
+    // }
+    //
+    // [Fact]
+    // public void Delete_DeletesBandFromDatabase_testBand2()
+    // {
+    //   //Arrange
+    //   string name1 = "Rooky Band";
+    //   string type1 = "Rock";
+    //   Band testBand1 = new Band(name1, type1);
+    //   testBand1.Save();
+    //
+    //   string name2 = "Jazzo Band";
+    //   string type2 = "Jazz";
+    //   Band testBand2 = new Band(name2, type2);
+    //   testBand2.Save();
+    //
+    //   //Act
+    //   testBand1.Delete();
+    //   List<Band> resultBands = Band.GetAll();
+    //   List<Band> testBandList = new List<Band> {testBand2};
+    //
+    //   //Assert
+    //   Assert.Equal(testBandList, resultBands);
+    // }
 
     public void Dispose()
     {

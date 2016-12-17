@@ -205,7 +205,68 @@ namespace BandTracker.Objects
       return bands;
     }
 
-  
+    public void Update(string newName, string newAddress)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @newName, address = @newAddress OUTPUT INSERTED.name, INSERTED.address WHERE id = @VenueId;", conn);
+
+      SqlParameter bandNameParameter = new SqlParameter();
+      bandNameParameter.ParameterName = "@newName";
+      bandNameParameter.Value = newName;
+      cmd.Parameters.Add(bandNameParameter);
+
+      SqlParameter addressParameter = new SqlParameter();
+      addressParameter.ParameterName = "@newAddress";
+      addressParameter.Value = newAddress;
+      cmd.Parameters.Add(addressParameter);
+
+
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = this.Id;
+      cmd.Parameters.Add(venueIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+       this.Name = rdr.GetString(0);
+       this.Address = rdr.GetString(1);
+      }
+
+      if (rdr != null)
+      {
+       rdr.Close();
+      }
+
+      if (conn != null)
+      {
+       conn.Close();
+      }
+    }
+
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues WHERE id = @VenueId; DELETE FROM bands_venues WHERE venue_id = @VenueId;", conn);
+
+      SqlParameter venueIdParameter = new SqlParameter();
+      venueIdParameter.ParameterName = "@VenueId";
+      venueIdParameter.Value = this.Id;
+
+      cmd.Parameters.Add(venueIdParameter);
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

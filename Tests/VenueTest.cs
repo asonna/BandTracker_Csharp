@@ -81,25 +81,25 @@ namespace  BandTracker
       Assert.Equal(testVenue, result);
     }
 
-  //   [Fact]
-  //   public void AddBand_AddsBandToVenue_bandList()
-  //   {
-  //     //Arrange
-  //     Venue testVenue = new Venue("Mow the lawn");
-  //     testVenue.Save();
-  //
-  //     Band testBand = new Band("Home stuff");
-  //     testBand.Save();
-  //
-  //     //Act
-  //     testVenue.AddBand(testBand);
-  //
-  //     List<Band> result = testVenue.GetBands();
-  //     List<Band> testList = new List<Band>{testBand};
-  //
-  //     //Assert
-  //     Assert.Equal(testList, result);
-  //   }
+    [Fact]
+    public void AddBand_AddsBandToVenue_bandList()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Hilton Lounge", "Beaverton, OR");
+      testVenue.Save();
+
+      Band testBand = new Band("Jazzo Band", "Jazz");
+      testBand.Save();
+
+      //Act
+      testVenue.AddBand(testBand);
+
+      List<Band> result = testVenue.GetBands();
+      List<Band> testList = new List<Band>{testBand};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
 
     [Fact]
     public void GetBands_ReturnsAllVenueBands_bandList()
@@ -123,7 +123,40 @@ namespace  BandTracker
       Assert.Equal(testList, result);
     }
 
+    [Fact]
+    public void Test_Delete_DeletesVenueAssociationsFromDatabase()
+    {
+      //Arrange
+      Band testBand = new Band("Jazzo Band", "Jazz");
+      testBand.Save();
 
+      string testName = "Hilton Lounge";
+      string testAddress = "Beaverton, OR";
+      Venue testVenue = new Venue(testName, testAddress);
+      testVenue.Save();
+
+      //Act
+      testVenue.AddBand(testBand);
+      testVenue.Delete();
+
+      List<Venue> resultBandVenues = testBand.GetVenues();
+      List<Venue> testBandVenues = new List<Venue> {};
+
+      //Assert
+      Assert.Equal(testBandVenues, resultBandVenues);
+    }
+
+    [Fact]
+    public void Update_UpdateVenueNameAndAddress_NameAndAddressUpdatedInDatabase()
+    {
+      Venue testVenue = new Venue("Hilton Lounge", "Beaverton, OR");
+      testVenue.Save();
+
+      testVenue.Update("Magestic Club", "Tigard, OR");
+      Venue result = Venue.GetAll()[0];
+
+      Assert.Equal(result, testVenue);
+    }
 
     public void Dispose()
     {

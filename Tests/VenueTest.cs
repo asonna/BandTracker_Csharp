@@ -81,6 +81,48 @@ namespace  BandTracker
       Assert.Equal(testVenue, result);
     }
 
+  //   [Fact]
+  //   public void AddBand_AddsBandToVenue_bandList()
+  //   {
+  //     //Arrange
+  //     Venue testVenue = new Venue("Mow the lawn");
+  //     testVenue.Save();
+  //
+  //     Band testBand = new Band("Home stuff");
+  //     testBand.Save();
+  //
+  //     //Act
+  //     testVenue.AddBand(testBand);
+  //
+  //     List<Band> result = testVenue.GetBands();
+  //     List<Band> testList = new List<Band>{testBand};
+  //
+  //     //Assert
+  //     Assert.Equal(testList, result);
+  //   }
+
+    [Fact]
+    public void GetBands_ReturnsAllVenueBands_bandList()
+    {
+      //Arrange
+      Venue testVenue = new Venue("Hilton Lounge", "Beaverton, OR");
+      testVenue.Save();
+
+      Band testBand1 = new Band("Jazzo Band", "Jazz");
+      testBand1.Save();
+
+      Band testBand2 = new Band("Rocky Band", "Rock");
+      testBand2.Save();
+
+      //Act
+      testVenue.AddBand(testBand1);
+      List<Band> result = testVenue.GetBands();
+      List<Band> testList = new List<Band> {testBand1};
+
+      //Assert
+      Assert.Equal(testList, result);
+    }
+
 
 
     public void Dispose()

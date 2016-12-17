@@ -1,1 +1,19 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
 
+<h1>New Band Entry</h1>
+<h2>Add a band</h2>
+<form action="/bands/new" method="post">
+	<div class="form-group">
+	  <label for="band-name">Band Name:</label>
+	  <input id="band-name" name="band-name" type="text" placeholder="Jazzo Band" required autofocus>
+	</div>
+	<div class="form-group">
+	  <label for="band-number">Band Number:</label>
+	  <input id="band-number" name="band-number" type="text" placeholder="Jazzo">
+	</div>
+  <button type="submit">Add new band</button>
+</form>
+<p><a href="/">Back home</a></p>
+<p><a href="/bands">View all bands</a></p>

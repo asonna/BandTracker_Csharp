@@ -1,1 +1,19 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
 
+<h1>New Venue Entry</h1>
+<h2>Add a venue</h2>
+<form action="/venues/new" method="post">
+	<div class="form-group">
+	  <label for="venue-name">Venue Name:</label>
+	  <input id="venue-name" name="venue-name" type="text" placeholder="Club Lounge" required autofocus>
+	</div>
+	<div class="form-group">
+	  <label for="venue-address">Venue Location:</label>
+	  <input id="venue-address" name="venue-address" type="text" placeholder="portland,OR">
+	</div>
+  <button type="submit">Add new venue</button>
+</form>
+<p><a href="/">Back home</a></p>
+<p><a href="/venues">View all venues</a></p>

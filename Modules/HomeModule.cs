@@ -13,8 +13,7 @@ namespace BandTracker
         return View["index.cshtml"];
       };
 
-
-
+      
     }
   }
 }

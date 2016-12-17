@@ -1,0 +1,10 @@
+body {
+  background-image: linear-gradient(to bottom, maroon, pink, white, maroon);
+}
+
+input {
+  width: 30vw;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px black;
+  padding-left: 4px;
+}

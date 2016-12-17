@@ -31,6 +31,21 @@ namespace BandTracker
         return View["band_form.cshtml"];
       };
 
+      Post["/venues/new"] = _ => {
+        string venueName = Request.Form["venue-name"];
+        string venueAddress = Request.Form["venue-address"];
+        Venue newVenue = new Venue(venueName, venueAddress);
+        newVenue.Save();
+        return View["venue.cshtml", newVenue];
+      };
+
+      Post["/bands/new"] = _ => {
+        string bandName = Request.Form["band-name"];
+        string bandType = Request.Form["band-type"];
+        Band newBand = new Band(bandName, bandType);
+        newBand.Save();
+        return View["band.cshtml", newBand];
+      };
 
     }
   }

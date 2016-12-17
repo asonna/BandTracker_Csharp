@@ -18,6 +18,69 @@ namespace BandTracker.Objects
       this.Type = type;
     }
 
-    
+    public override bool Equals(System.Object otherBand)
+    {
+      if (!(otherBand is Band))
+      {
+        return false;
+      }
+      else
+      {
+        Band newBand = (Band) otherBand;
+        bool idEquality = (this.Id == newBand.Id);
+        bool nameEquality = (this.Name == newBand.Name);
+        bool typeEquality = (this.Type == newBand.Type);
+        return (idEquality && nameEquality && typeEquality);
+      }
+    }
+
+    public override int GetHashCode()
+    {
+      return this.Name.GetHashCode();
+    }
+
+    public static List<Band> GetAll()
+    {
+      List<Band> AllBands = new List<Band>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM bands;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        int bandId = rdr.GetInt32(0);
+        string bandName = rdr.GetString(1);
+        string bandType = rdr.GetString(2);
+        Band newBand = new Band(bandName, bandType, bandId);
+        AllBands.Add(newBand);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+      return AllBands;
+    }
+
+
+
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM bands;", conn);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+    }
+
   }
 }

@@ -14,6 +14,16 @@ namespace  BandTracker
       DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
     }
 
+    [Fact]
+    public void GetAll_DatabaseEmptyAtFirst_0()
+    {
+      //Arrange, Act
+      int result = Venue.GetAll().Count;
+
+      //Assert
+      Assert.Equal(0, result);
+    }
+
     
     public void Dispose()
     {

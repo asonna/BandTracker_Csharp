@@ -18,6 +18,68 @@ namespace BandTracker.Objects
       this.Address = address;
     }
 
-    
+    public override bool Equals(System.Object otherVenue)
+    {
+      if (!(otherVenue is Venue))
+      {
+        return false;
+      }
+      else
+      {
+        Venue newVenue = (Venue) otherVenue;
+        bool idEquality = (this.Id == newVenue.Id);
+        bool nameEquality = (this.Name == newVenue.Name);
+        bool addressEquality = (this.Address == newVenue.Address);
+        return (idEquality && nameEquality && addressEquality);
+      }
+    }
+
+    public override int GetHashCode()
+    {
+      return this.Name.GetHashCode();
+    }
+
+    public static List<Venue> GetAll()
+    {
+      List<Venue> AllVenues = new List<Venue>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM venues;", conn);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        int venueId = rdr.GetInt32(0);
+        string venueName = rdr.GetString(1);
+        string venueAddress = rdr.GetString(2);
+        Venue newVenue = new Venue(venueName, venueAddress, venueId);
+        AllVenues.Add(newVenue);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+
+      return AllVenues;
+    }
+
+
+    public static void DeleteAll()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM venues;", conn);
+      cmd.ExecuteNonQuery();
+      conn.Close();
+    }
+
   }
 }

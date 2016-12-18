@@ -1,1 +1,17 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
 
+<h1>Add a Venue to @Model["band"].Name</h1>
+
+<h4>Add a venue to this band:</h4>
+<form action="/band/@Model["band"].Id/venues/added" method="post">
+  <label for="venue-id">Select a venue: </label>
+  <select id="venue-id" name="venue-id" type="text">
+  @foreach (var venue in @Model["available-venues"])
+  {
+    <option value="@venue.Id">@venue.Name</option>
+  }
+  </select>
+  <button type="submit">Add</button>
+</form>

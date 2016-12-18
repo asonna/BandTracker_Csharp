@@ -47,6 +47,47 @@ namespace BandTracker
         return View["band.cshtml", newBand];
       };
 
+      Get["/band/{id}/venues/add"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object> ();
+        Band selectedBand = Band.Find(parameters.id);
+        List<Venue> currentVenues = selectedBand.GetVenues();
+        List<Venue> allVenues = Venue.GetAll();
+
+        List<Venue> availableVenues = new List<Venue> {};
+        foreach(Venue venue in allVenues)
+        {
+          // If a venue is already in the band it will return an index of 0 or above.
+          if(currentVenues.IndexOf(venue) < 0)
+          {
+            availableVenues.Add(venue);
+          }
+        }
+        model.Add("band", selectedBand);
+        model.Add("available-venues", availableVenues);
+        return View["AddVenueToBand.cshtml", model];
+      };
+
+      Get["/venue/{id}/bands/add"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object> ();
+        Venue selectedVenue = Venue.Find(parameters.id);
+        List<Band> currentBands = selectedVenue.GetBands();
+        List<Band> allBands = Band.GetAll();
+
+        List<Band> availableBands = new List<Band> {};
+        foreach(Band band in allBands)
+        {
+          // If the venue is already enrolled in a band it will return an index of 0 or above.
+          if(currentBands.IndexOf(band) < 0)
+          {
+            availableBands.Add(band);
+          }
+        }
+        model.Add("venue", selectedVenue);
+        model.Add("available-bands", availableBands);
+        return View["AddBandToVenue.cshtml", model];
+      };
+
+
     }
   }
 }

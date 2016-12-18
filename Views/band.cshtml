@@ -18,12 +18,12 @@
 
 @* <h4>Add a venue to this band:</h4>
 <form action='/band/add_venue' method='post'>
-  <input id='band-id' name='band-id' type='hidden' value='@Model["band"].GetId()'>
+  <input id='band-id' name='band-id' type='hidden' value='@Model["band"].Id'>
   <label for='venue-id'>Select a venue</label>
   <select id='venue-id' name='venue-id' type='text'>
     @foreach (var venue in @Model["allVenues"])
     {
-      <option value='@venue.GetId()'>@venue.GetName()</option>
+      <option value='@venue.Id'>@venue.Name</option>
     }
   </select>
   <button type='submit'>Add</button>

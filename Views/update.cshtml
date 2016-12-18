@@ -1,13 +1,13 @@
-{
+@{
 	Layout="Shared/_Layout.cshtml";
 }
 
 <!-- <hr />
 <h2>UPDATE BANDS: </h2>
 <br>
-<h2>Edit Band: @Model.GetName()</h2>
+<h2>Edit Band: @Model.Name</h2>
 <br>
-<form action="/bands/@Model.GetId()/update" method="post">
+<form action="/bands/@Model.Id/update" method="post">
   <input type="hidden" name="_method" value="PATCH">
   <label for ="new-name">New Name:</label>
   <input required name="new-name" type="text">
@@ -23,20 +23,34 @@
 <br> -->
 <h2>UPDATE VENUE: </h2>
 <br>
-<h2>Edit Venue: @Model.Name</h2>
+<h2>Edit Venue: @Model.Name, @Model.Address</h2>
 <br>
 <form action="/venues/@Model.Id/update" method="post">
-  <input type="hidden" name="_method" value="PATCH">
-  <label for ="new-name">New Name:</label>
-  <input required name="new-name" type="text">
-  <input type="hidden" name="_method" value="PATCH">
-  <label for ="new-address">New address:</label>
-  <input required address="new-address" type="text">
+  <div class="row">
+    <div class="col-md-6">
+      <input type="hidden" name="_method" value="PATCH">
+      <label for ="new-name">New Name:</label>
+      <input required name="new-name" type="text">
+    </div>
+    <div class="col-md-6">
+      <input type="hidden" name="_method" value="PATCH">
+      <label for ="new-address">New address:</label>
+      <input required address="new-address" type="text">
+    </div>
+  </div>
   <button type="submit">Edit</button>
 </form>
 <br>
-<h2><a href="/venue_delete">Delete Band from Venues</a></h2>
 <br>
-<h2><a href="/venues/">View all venues</a></h2>
 <br>
-<h2><a href="/">Back to Main Page</a></h2>
+<div class="row">
+  <div class="col-md-4">
+    <h2><a href="/venue_delete">Delete Band from Venues</a></h2>
+  </div>
+  <div class="col-md-4">
+    <h2><a href="/venues/">View all venues</a></h2>
+  </div>
+  <div class="col-md-4">
+    <h2><a href="/">Back to Main Page</a></h2>
+  </div>
+</div>

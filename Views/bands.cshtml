@@ -10,9 +10,14 @@
   <ul>
     @foreach (var band in Model)
     {
-      <li><a href="/band/@band.Id">@band.Name</a></li>
+      <li><a href="/band/@band.Id">@band.Name, @band.Type</a></li>
     }
   </ul>
 }
+else
+{
+  <h3>No Current Bands!</h3>
+}
+
 <h4><a href="/bands/new">Add a new band</a></h4>
 <h4><a href="/">Return home</a></h4>

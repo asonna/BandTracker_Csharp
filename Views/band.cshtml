@@ -1,0 +1,34 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<h1>Band and Venues Related Entry</h1>
+<h2>Band: @Model.Name</h2>
+<hr />
+@if (@Model.GetVenues().Count != 0)
+{
+  <h4>Here are all the venues where this band has played before:</h4>
+  <ul>
+    @foreach (var venue in @Model.GetVenues())
+    {
+      <li><a href="/venue/@venue.Id">@venue.Name</a></li>
+    }
+  </ul>
+}
+
+@* <h4>Add a venue to this band:</h4>
+<form action='/band/add_venue' method='post'>
+  <input id='band-id' name='band-id' type='hidden' value='@Model["band"].GetId()'>
+  <label for='venue-id'>Select a venue</label>
+  <select id='venue-id' name='venue-id' type='text'>
+    @foreach (var venue in @Model["allVenues"])
+    {
+      <option value='@venue.GetId()'>@venue.GetName()</option>
+    }
+  </select>
+  <button type='submit'>Add</button>
+</form> *@
+
+
+<p><a href="/">Return to Main Page</a></p>
+<p><a href="/band/@Model.Id/venues/add">Click here to add recent venues to this band</a></p>

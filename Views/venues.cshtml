@@ -10,7 +10,10 @@
   <ul>
     @foreach (var venue in Model)
     {
-      <li><a href='/venue/@venue.Id'>@venue.Name, @venue.Address</a></li>
+      <li><a href='/venue/@venue.Id'>@venue.Id - @venue.Name, @venue.Address</a></li>
+			<p><a href="/venue/@venue.Id/update">Update</a> |
+			<a href="/venue/@venue.Id/delete">Delete</a></p>
+			<br>
     }
   </ul>
 }

@@ -1,0 +1,19 @@
+@{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<h1>You added @Model.Name venue to this band.</h1>
+<hr />
+@if (@Model.GetVenues().Count != 0)
+{
+  <h4>Here are all the venues registered in this band:</h4>
+  <ul>
+    @foreach (var venue in @Model.GetVenues())
+    {
+      <li><a href="/venue/@venue.Id">@venue.Name</a></li>
+    }
+  </ul>
+}
+
+<p><a href="/">Return to Main Page</a></p>
+<p><a href="/band/@Model.Id/venues/add">Click here to add venues to this band</a></p>

@@ -1,0 +1,48 @@
+Specifications:
+
+For the Band Object:
+----------------------
+
+Behavior: Check that band Table is empty at first
+Input: null
+Output: 0;
+Description: To ensure that we are starting with an empty band table and code will return nothing when query for content (GetAll bands lists).
+
+Behavior: Check that system returns recognize the equality between two instances with same value
+Input: Band firstBand = new Band("Jazzo Band", "Jazz");
+       Band secondBand = new Band("Jazzo Band", "Jazz");
+Output: True
+Description: To ensure that the code will be able to equate a value against the database when executing the search object(Find specify band by one property).
+
+Behavior: Check that new band can be entered and saved to database
+Input: Band firstBand = new Band("Jazzo Band", "Jazz");
+Output: 1;
+Description: To ensure that entries are been saved to the database (Useful if band needs to be found in the database later).
+
+Behavior: Check that each band object is been assigned an unique Id.
+Input:  Band testBand = new Band("Jazzo Band", "Jazz");
+        Band savedBand = Band.GetAll()[0];
+
+Output: int testId = testBand.GetId();
+Description: To ensure that band objects can later been found by their unique Id or also matched through their unique id (Find the band with band Id  1).
+
+Behavior: Check to find band object in database
+Input: testBand.GetId()
+Output: testBand
+Description: To ensure that we are able to find any band object based on their Id property.
+
+Behavior: Check to update band name and type with new name and new type
+Input: Band testBand = new Band("Jazzo Band", "Jazz");
+      "Rooky Band", "Rock"
+Output: Band testBand = new Band("Rooky Band", "Rock")
+Description: This will allow employee to update band name and type.
+
+Behavior: Check to delete a band from the system
+Input: Band testBand = new Band("Rooky Band", "Rock");
+Output:0
+Description: Delete the band name so that trying to find it will return nothing.
+
+Behavior:
+Input:
+Output:
+Description:

@@ -1,0 +1,60 @@
+Home page
+
+  Welcome to the Best Hair Salon in Beaverton
+
+
+  Specifications:
+
+  For the Venue object:
+  -----------------------
+
+  Behavior: Check that venue Table is empty at first
+  Input: null
+  Output: 0;
+  Description: To ensure that we are starting with an empty venue table and code will return nothing when query for content (GetAll venues lists).
+
+  Behavior: Check that system returns recognize the equality between two Venue instances with same value
+  Input: Venue firstVenue = new Venue("westin Ball Room", "Portland, OR");
+         Venue secondVenue = new Venue("westin Ball Room", "Portland, OR");
+  Output: True
+  Description: To ensure that the code will be able to equate a value against the database when executing the search object(Find specify Venue by one property).
+
+  Behavior: Check that new venue can be entered and saved to database
+  Input: Venue firstVenue = new Venue("westin Ball Room", "Portland, OR");
+  Output: 1;
+  Description: To ensure that entries are been saved to the database (Useful if venue needs to be found in the database later).
+
+  Behavior: Check that each venue object is been assigned an unique Id.
+  Input:  Venue testVenue = new Venue("westin Ball Room", "Portland, OR");
+          Venue savedVenue = Venue.GetAll()[0];
+
+  Output: int testId = testVenue.GetId();
+  Description: To ensure that venue objects can later been found by their unique Id or also matched through their unique id (eg: Find the venue with venue Id  1).
+
+  Behavior: Check to find venue object in database
+  Input: testVenue.GetId()
+  Output: testVenue
+  Description: To ensure that we are able to find any venue object based on their Id property.
+
+  Behavior: Check to retrieve all Clients under a Venue
+  Input: Venue testVenue = new Venue("westin Ball Room", "Portland, OR");
+        Client firstClient = new Client("Jazzo Band", "Jazz", testVenue.GetId());
+        Client secondClient = new Client("Rooky Band", "Rock", testVenue.GetId());
+  Output: testClientList()
+  Description: Retrieve a report of all clients under one venue
+
+  Behavior: Check to update venue name with new name
+  Input: Venue testVenue = new Venue("westin Ball Room", "Portland, OR");
+        "Veronique Moore"
+  Output: Venue testVenue = new Venue("Hilton Lounge", "Beaverton, OR")
+  Description: This will allow employee to update venue name.
+
+  Behavior: Check to delete a venue from the system
+  Input: Venue testVenue = new Venue("Hilton Lounge", "Beaverton, OR");
+  Output:0
+  Description: Delete the venue name so that trying to find it will return nothing.
+
+  Behavior:
+  Input:
+  Output:
+  Description:

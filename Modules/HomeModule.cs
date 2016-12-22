@@ -67,7 +67,7 @@ namespace BandTracker
         return View["AddVenueToBand.cshtml", model];
       };
 
-      Get["/venue/{id}/bands/add"] = parameters => {
+      Get["/venues/{id}/bands/add"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object> ();
         Venue selectedVenue = Venue.Find(parameters.id);
         List<Band> currentBands = selectedVenue.GetBands();
@@ -76,7 +76,7 @@ namespace BandTracker
         List<Band> availableBands = new List<Band> {};
         foreach(Band band in allBands)
         {
-          // If the venue is already enrolled in a band it will return an index of 0 or above.
+          // If the band is already enrolled in a venue it will return an index of 0 or above.
           if(currentBands.IndexOf(band) < 0)
           {
             availableBands.Add(band);
@@ -98,7 +98,7 @@ namespace BandTracker
       };
 
       Post["/band/{id}/venues/added"] = parameters => {
-        int venueId = Request.Form["venue-id"];
+        int venueId = int.Parse(Request.Form["venue-id"]);
         Venue selectedVenue = Venue.Find(venueId);
 
         Band selectedBand = Band.Find(parameters.id);
@@ -108,7 +108,7 @@ namespace BandTracker
       };
 
       Post["/venue/{id}/bands/added"] = parameters => {
-        int bandId = Request.Form["band-id"];
+        int bandId = int.Parse(Request.Form["band-id"]);
         Band selectedBand = Band.Find(bandId);
 
         Venue selectedVenue = Venue.Find(parameters.id);
@@ -116,8 +116,6 @@ namespace BandTracker
 
         return View["band_added.cshtml", selectedVenue];
       };
-
-
 
       Get["/venues/{id}/update"] = parameters => {
         Venue selectedVenue = Venue.Find(parameters.id);
@@ -136,6 +134,21 @@ namespace BandTracker
 
         return View["success.cshtml"];
       };
+
+      Get["/venues/{id}/delete"] = parameters => {
+        Venue selectedVenue = Venue.Find(parameters.id);
+        return View["delete.cshtml", selectedVenue];
+      };
+
+      Delete["/venues/{id}/delete"] = parameters => {
+        Venue selectedVenue = Venue.Find(parameters.id);
+
+        selectedVenue.Delete();
+
+        return View["deleted.cshtml"];
+      };
+
+
     }
   }
 }

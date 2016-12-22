@@ -1,0 +1,14 @@
+{
+	Layout="Shared/_Layout.cshtml";
+}
+
+<hr />
+  <h2>Are you sure you want to delete this group? <strong>@Model["band"].Name</strong> from <strong>@Model["venue"].Name?</strong></h2>
+  <form action="/venue/@Model["venue"].Id/venue_delete/@Model["band"].Id" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button type="submit">Delete</buttn>
+  </form>
+  <hr/>
+  <h2><a href="/venues/@Model["venue"].Id">Go Back</a></h2>
+  <br>
+  <h2><a href="/">Return to Main Page</a></h2>

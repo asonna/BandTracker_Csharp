@@ -1,23 +1,18 @@
-{
+@{
 	Layout="Shared/_Layout.cshtml";
 }
 
 <hr />
-  <h2>Are you sure you want to delete <strong>@Model.Name</strong>?</h2>
-  <form action="/bands/@Model.Id/delete" method="post">
+  <h2>Are you sure you want to delete <strong>@Model.Name</strong>? If yes, please click delete below:</h2>
+  <form action="/venues/@Model.Id/delete" method="post">
     <input type="hidden" name="_method" value="DELETE">
     <button type="submit">Delete</button>
   </form>
   <hr>
   <h2><a href="/bands/">View all bands</a></h2>
   <br>
-  <br>
-  <h2>Are you sure you want to delete <strong>@Model.Name</strong>?</h2>
-  <form action="/venues/@Model.Id/delete" method="post">
-    <input type="hidden" name="_method" value="DELETE">
-    <button type="submit">Delete</button>
-  </form>
-  <br>
+
+
   <h2><a href="/venues">Return to Venues</a></h2>
   <br>
   <h2><a href="/">Return to Main Page</a></h2>

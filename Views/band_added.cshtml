@@ -4,11 +4,11 @@
 
 <h1>You added @Model.Name band to this venue.</h1>
 <hr />
-@if (@Model.Getbands().Count != 0)
+@if (@Model.GetBands().Count != 0)
 {
   <h4>Here are all the bands hosted with this venue:</h4>
   <ul>
-    @foreach (var band in @Model.Getbands())
+    @foreach (var band in @Model.GetBands())
     {
       <li><a href="/band/@band.Id">@band.Name</a></li>
     }

@@ -7,7 +7,7 @@
 <hr />
 @if (@Model.GetBands().Count != 0)
 {
-  <h4>This venue is enrolled in these bands:</h4>
+  <h4>These are all the bands that this venue had hosted:</h4>
   <ul>
     @foreach (var band in @Model.GetBands())
     {
@@ -17,7 +17,7 @@
 }
 else
 {
-	<h4>This venue is not enrolled in any bands.</h4>
+	<h4>This venue has never hosted a band.</h4>
 }
 <!-- @* <h4>Add a venue to this band:</h4>
 <form action='/band/add_venue' method='post'>
@@ -33,4 +33,4 @@ else
 </form> *@ -->
 
 <p><a href="/">Return to Main Page</a></p>
-<p><a href="/venue/@Model.Id/bands/add">Click here to enroll venue to bands</a></p>
+<p><a href="/venues/@Model.Id/bands/add">Click here to add venue to bands</a></p>

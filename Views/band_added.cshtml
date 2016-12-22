@@ -6,7 +6,7 @@
 <hr />
 @if (@Model.Getbands().Count != 0)
 {
-  <h4>Here are all the bands registered with this venue:</h4>
+  <h4>Here are all the bands hosted with this venue:</h4>
   <ul>
     @foreach (var band in @Model.Getbands())
     {
@@ -17,4 +17,4 @@
 
 
 <p><a href="/">Return to Main Page</a></p>
-<p><a href="/venue/@Model.Id/bands/add">Click here to register bands to venue</a></p>
+<p><a href="/venue/@Model.Id/bands/add">Click here to add a band to this venue</a></p>

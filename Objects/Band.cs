@@ -140,7 +140,7 @@ namespace BandTracker.Objects
       return foundBand;
     }
 
-    // 
+    //
     // public void Update(string newName, string newType)
     // {
     //   SqlConnection conn = DB.Connection();

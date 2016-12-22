@@ -107,7 +107,6 @@ namespace BandTracker.Objects
       }
     }
 
-
     public static Venue Find(int id)
     {
       SqlConnection conn = DB.Connection();
@@ -227,18 +226,7 @@ namespace BandTracker.Objects
       venueIdParameter.ParameterName = "@VenueId";
       venueIdParameter.Value = this.Id;
       cmd.Parameters.Add(venueIdParameter);
-      SqlDataReader rdr = cmd.ExecuteReader();
-
-      while(rdr.Read())
-      {
-       this.Name = rdr.GetString(0);
-       this.Address = rdr.GetString(1);
-      }
-
-      if (rdr != null)
-      {
-       rdr.Close();
-      }
+      cmd.ExecuteNonQuery();
 
       if (conn != null)
       {

@@ -5,13 +5,15 @@
 <h1>Add a Band to @Model["Venue"].Name</h1>
 
 <h4>Add a band to this venue:</h4>
+
 <form action="/venue/@Model["venue"].Id/bands/added" method="post">
-  <label for="band-id">Select a band: </label>
-  <select id="band-id" name="band-id" type="text">
-  @foreach (var band in @Model["available-bands"])
-  {
-    <option value="@band.Id">@band.Name</option>
-  }
-  </select>
+  <div class="form-group">
+    <label for="band-name">Enter a band name: </label>
+    <input id="band-name" name="band-name" type="text" required autofocus>
+  </div>
+  <div class="form-group">
+    <label for="band-type">Band Type:</label>
+    <input id="band-type" name="band-type" type="text" placeholder="Jazz">
+  </div>
   <button type="submit">Add</button>
 </form>

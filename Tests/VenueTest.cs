@@ -154,8 +154,9 @@ namespace  BandTracker
 
       testVenue.Update("Magestic Club", "Tigard, OR");
       Venue result = Venue.GetAll()[0];
+      Venue UpdatedVenue = new Venue("Magestic Club", "Tigard, OR", testVenue.Id);
 
-      Assert.Equal(result, testVenue);
+      Assert.Equal(result, UpdatedVenue);
     }
 
     public void Dispose()

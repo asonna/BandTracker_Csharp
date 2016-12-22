@@ -130,9 +130,8 @@ namespace BandTracker
         string newAddress = Request.Form["new-address"];
 
         selectedVenue.Update(newName, newAddress);
-        // selectedVenue.Update();
 
-        return View["success.cshtml"];
+        return View["success.cshtml", selectedVenue];
       };
 
       Get["/venues/{id}/delete"] = parameters => {

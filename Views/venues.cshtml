@@ -1,6 +1,7 @@
 @{
 	Layout="Shared/_Layout.cshtml";
 }
+
 <h1>Venues Catalog</h1>
 <hr />
 <h2>Venues:</h2>
@@ -10,8 +11,8 @@
     @foreach (var venue in Model)
     {
       <li><a href='/venue/@venue.Id'>@venue.Id - @venue.Name, @venue.Address</a></li>
-			<p><a href="/venue/@venue.Id/update">Update</a> |
-			<a href="/venue/@venue.Id/delete">Delete</a></p>
+			<p><a href="/venues/@venue.Id/update">Update</a> |
+			<a href="/venues/@venue.Id/delete">Delete</a></p>
 			<br>
     }
   </ul>

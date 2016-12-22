@@ -127,12 +127,15 @@ namespace BandTracker
 
       Patch["/venues/{id}/update"] = parameters => {
         Venue selectedVenue = Venue.Find(parameters.id);
-        selectedVenue.Update(Request.Form["new-name"], Request.Form["new-address"]);
+
+        string newName = Request.Form["new-name"];
+        string newAddress = Request.Form["new-address"];
+
+        selectedVenue.Update(newName, newAddress);
         // selectedVenue.Update();
 
         return View["success.cshtml"];
       };
-
     }
   }
 }
